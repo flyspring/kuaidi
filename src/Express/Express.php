@@ -35,7 +35,7 @@ class Express
      */
     public function __construct($config = [])
     {
-        $this->config = $config;
+        $this->setConfig($config);
     }
     
     /**
@@ -44,6 +44,15 @@ class Express
     public function getConfig()
     {
         return $this->config;
+    }
+    
+    /**
+     * Set config
+     * @param array $config
+     */
+    public function setConfig($config)
+    {
+        $this->config = $config;
     }
     
     /**

@@ -19,6 +19,15 @@ class ExpressManager
      */
     public function __construct($config = [])
     {
+        $this->setConfig($config);
+    }
+    
+    /**
+     * Set config
+     * @param array $config
+     */
+    public function setConfig($config)
+    {
         $this->config = $config;
     }
     
