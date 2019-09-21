@@ -85,14 +85,19 @@ class KuaiDiNiao extends Express implements ExpressInterface
         //AddServices
         
         $requestData = [
-            'ShipperCode' => $expressCode, 
-            'OrderCode' => $orderId, 
+            'ShipperCode' => $expressCode,
+            'OrderCode' => $orderId,
             'PayType' => $options['pay_type'] ?? 1, //邮费支付方式:1-现付，2-到付，3-月结，4-第三方支付
             'ExpType' => $options['exp_type'] ?? 1, //快递类型：1-标准快件，其它量看文档
-            'CustomerName' => $options['customer_name'] ?? '', 
-            'CustomerPwd' => $options['customer_pwd'] ?? '', 
+            'TransType' => $options['trans_type'] ?? 1, //运输方式 1-陆运  2-空运 不填默认为1
+            'IsNotice' => $options['is_notice'] ?? 1, //是否通知快递员上门揽件 0-通知, 1-不通知 不填则默认为1
+            'StartDate' => $options['start_date'] ?? '', //上门取件时间点, "yyyy-MM-dd HH:mm:ss"
+            'EndDate' => $options['end_date'] ?? '', //上门取件时间点, "yyyy-MM-dd HH:mm:ss"
+            'CustomerName' => $options['customer_name'] ?? '',
+            'CustomerPwd' => $options['customer_pwd'] ?? '',
             'MonthCode' => $options['month_code'] ?? '',
             'IsReturnPrintTemplate' => $options['need_print_tpl'] ?? 0,
+            'Remark' => $options['remark'] ?? '', //备注
             'Sender' => $from,
             'Receiver' => $to,
             'Commodity' => $commodity,
