@@ -219,8 +219,8 @@ class KuaiDiNiao extends Express implements ExpressInterface
         if (empty($result) || !isset($result['Success'])) {
             return ['status' => '0', 'message' => '接口返回数据有误'];
         }
-        if (!$result['Success'] && $result['reason'] != null) {
-            return ['status' => '0', 'message' => $result['Reason'] ?? '接口返回结果失败'];
+        if (!$result['Success'] || $result['Reason'] != null) {
+            return ['status' => '0', 'message' => $result['Reason'] ?: '接口返回结果失败'];
         }
         
         $traces = [];
@@ -234,7 +234,9 @@ class KuaiDiNiao extends Express implements ExpressInterface
             }
         }
         
-        return ['status' => '1', 'message' => 'success', 'traces' => $traces];
+        $expressStatus = isset($result['State']) ? intval($result['State']) : 0; //0-无轨迹，1-揽件，2-在途，3-签收，4-问题件
+        
+        return ['status' => '1', 'message' => 'success', 'traces' => $traces, 'express_status' => $expressStatus];
     }
 
     public function queryRoutes($dataMap)
