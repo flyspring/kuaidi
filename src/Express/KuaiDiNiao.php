@@ -234,7 +234,7 @@ class KuaiDiNiao extends Express implements ExpressInterface
             }
         }
         
-        $expressStatus = isset($result['State']) ? intval($result['State']) : 0; //0-无轨迹，1-揽件，2-在途，3-签收，4-问题件
+        $expressStatus = isset($result['State']) ? $this->getExpressStatus($result['State']) : 1; //0-无轨迹，1-揽件，2-在途，3-签收，4-问题件
         
         return ['status' => '1', 'message' => 'success', 'traces' => $traces, 'express_status' => $expressStatus];
     }
@@ -251,5 +251,16 @@ class KuaiDiNiao extends Express implements ExpressInterface
     protected function makeSign($requestData)
     {
         return urlencode(base64_encode(md5($requestData . $this->getAppKey())));
+    }
+    
+    /**
+     * Get express status
+     * 归为：1-无轨迹，2-揽件，3-在途，4-签收，5-问题件
+     * @param int $state
+     */
+    protected function getExpressStatus($state)
+    {
+        $state = intval($state);
+        return $state + 1;
     }
 }
