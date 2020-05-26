@@ -221,8 +221,8 @@ class KuaiDiNiao extends Express implements ExpressInterface
         if (empty($result) || !isset($result['Success'])) {
             return ['status' => '0', 'message' => '接口返回数据有误'];
         }
-        if (!$result['Success'] || $result['Reason'] != null) {
-            return ['status' => '0', 'message' => $result['Reason'] ?: '接口返回结果失败'];
+        if (!$result['Success']) {
+            return ['status' => '0', 'message' => $result['Reason'] ?? '接口返回结果失败'];
         }
         
         $traces = [];
