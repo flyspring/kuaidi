@@ -96,6 +96,8 @@ class KuaiDiNiao extends Express implements ExpressInterface
             'CustomerName' => $options['customer_name'] ?? '',
             'CustomerPwd' => $options['customer_pwd'] ?? '',
             'MonthCode' => $options['month_code'] ?? '',
+			'SendSite' => $options['send_site'] ?? '', 
+			'SendStaff' => $options['send_staff'] ?? '',
             'IsReturnPrintTemplate' => $options['need_print_tpl'] ?? 0,
             'Remark' => $options['remark'] ?? '', //备注
             'Sender' => $from,
