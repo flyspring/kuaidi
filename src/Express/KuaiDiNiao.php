@@ -192,8 +192,8 @@ class KuaiDiNiao extends Express implements ExpressInterface
      */
     public function queryRoute($expressCode, $expressNo, $orderId)
     {
-        if (empty($expressCode) || empty($expressNo) || empty($orderId)) {
-            return ['status' => '0', 'message' => '快递编码、运单号、订单编号不能为空'];
+        if (empty($expressCode) || empty($expressNo)) {
+            return ['status' => '0', 'message' => '快递编码、运单号不能为空'];
         }
         
         $requestData = [
