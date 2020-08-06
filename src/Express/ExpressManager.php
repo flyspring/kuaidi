@@ -77,6 +77,10 @@ class ExpressManager
         $config = $this->config[$name] ?? $this->config;
         
         switch ($name) {
+            case 'kdniao':
+                return new KuaiDiNiao($config);
+            case 'kdwang':
+                return new KuaiDiWang($config);
             default:
                 return new KuaiDiNiao($config);
         }
